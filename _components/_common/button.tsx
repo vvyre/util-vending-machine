@@ -14,6 +14,7 @@ export const Button = styled('button', {
       },
       default: {
         fontWeight: '500',
+        fontSize: '0.95rem',
         height: '2.15rem',
       },
       floating: {
