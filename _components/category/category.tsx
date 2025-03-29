@@ -13,9 +13,6 @@ export function Category() {
           <Link href="/customs">
             <Button type="button">직구물품 통관</Button>
           </Link>
-          <Link href="/customs">
-            <Button type="button">통관상태 확인</Button>
-          </Link>
           <Link href="/">
             <Button type="button">처음으로</Button>
           </Link>
