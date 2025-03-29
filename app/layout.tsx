@@ -2,6 +2,8 @@ import { Grid } from '~/_components/_common/grid';
 import { Category } from '~/_components/category/category';
 import { getCssText } from '~/stitches.config';
 import setGlobalStyle from '~/_components/_common/_global-style.css';
+import 'jotai-devtools/styles.css';
+import { DevTools } from 'jotai-devtools';
 
 export default function RootLayout({
   children,
@@ -21,6 +23,7 @@ export default function RootLayout({
         <style id="stitches" dangerouslySetInnerHTML={{ __html: getCssText() }} />
       </head>
       <body>
+        <DevTools />
         <Grid>{children}</Grid>
         <Category />
       </body>
