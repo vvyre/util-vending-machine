@@ -1,7 +1,7 @@
-import setGlobalStyle from '~/_components/_common/_global-style.css';
 import { Grid } from '~/_components/_common/grid';
 import { Category } from '~/_components/category/category';
 import { getCssText } from '~/stitches.config';
+import setGlobalStyle from '~/_components/_common/_global-style.css';
 
 export default function RootLayout({
   children,
