@@ -1,3 +1,3 @@
-# Util Vending Machine Update Log
+# 편리자판기 업데이트 로그
 
 - 03.29 직구 통관상태 조회 추가

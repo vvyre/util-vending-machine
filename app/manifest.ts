@@ -3,9 +3,9 @@ import { COLORS } from '~/_components/_common/_colors.css';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'SYUTIL',
-    short_name: 'SYUTIL',
-    description: 'Util Application by SY',
+    name: '편리자판기',
+    short_name: '편리자판기',
+    description: 'Util Vending Machine by Seungyoon Yu',
     start_url: '/',
     display: 'standalone',
     background_color: COLORS.GRAY_100,
