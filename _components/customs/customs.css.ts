@@ -1,7 +1,7 @@
-import { styled } from '~/stitches.config';
-import { COLORS } from '../_common/_colors.css';
+import { COLORS } from '../_common/_colors';
+import { style } from '@vanilla-extract/css';
 
-export const Label = styled('span', {
+export const LABEL = style({
   fontSize: '1.1rem',
   display: 'inline-block',
   minWidth: '5rem',
@@ -9,12 +9,12 @@ export const Label = styled('span', {
   fontWeight: '400',
 });
 
-export const BillNo = styled('span', {
+export const BILLNO = style({
   fontFamily: 'space mono',
   textDecoration: 'none',
 });
 
-export const CargoTitle = styled('p', {
+export const CARGO_TITLE = style({
   fontSize: '1.2rem',
   minHeight: '2rem',
   lineHeight: '1.3rem',
@@ -22,19 +22,19 @@ export const CargoTitle = styled('p', {
   fontFamily: '"42dot sans", sans-serif',
 });
 
-export const Status = styled('span', {
+export const STATUS = style({
   fontSize: '1.1rem',
   fontWeight: 400,
   fontFamily: '"42dot sans", sans-serif',
 });
 
-export const Track = styled('a', {
+export const TRACK = style({
   fontSize: '1.1rem',
   marginLeft: '0.5rem',
   fontFamily: '"42dot sans", sans-serif',
 });
 
-export const ViewedBillNo = styled('button', {
+export const VIEWED_BILLNO = style({
   fontFamily: 'space mono',
   margin: 0,
   background: COLORS.GRAY_100,
@@ -43,7 +43,9 @@ export const ViewedBillNo = styled('button', {
   padding: '0.15rem 0.75rem 0.15rem 0.75rem',
   cursor: 'pointer',
   marginRight: '0.35rem',
-  '&:hover': {
-    background: COLORS.GRAY_200,
+  selectors: {
+    '&:hover': {
+      background: COLORS.GRAY_200,
+    },
   },
 });

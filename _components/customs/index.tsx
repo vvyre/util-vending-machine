@@ -1,18 +1,25 @@
 'use client';
 import { Button } from '~/_components/_common/button';
-import { GridForm } from '~/_components/_common/form';
-import { MonoSpaceInput } from '~/_components/_common/input';
+import { Form } from '~/_components/_common/form';
+import { Input } from '~/_components/_common/input';
 import { Spacing } from '~/_components/_common/spacing';
 import { CustomsHeader } from './header';
 import { useCustoms } from './use-customs-state';
 import { useForm } from '@frfla/react-hooks';
 import { Ref, useEffect, useState } from 'react';
 import { parseCustomsDate } from '~/_util/parse-customs-date';
-import { BillNo, Label, Status, CargoTitle, Track, ViewedBillNo } from './components';
-import { COLORS } from '../_common/_colors.css';
+import { COLORS } from '../_common/_colors';
 import { ParseCustomsUi } from './parse-customs-ui';
 import { useLocalStorage } from '~/_util/hooks/use-browser-store';
 import { isError } from './util';
+import {
+  CustomsBillno,
+  CustomsCargoTitle,
+  CustomsLabel,
+  CustomsStatus,
+  CustomsTrack,
+  CustomsViewedBillNoList,
+} from './customs-components';
 
 export function Customs() {
   const [store, storeController] = useLocalStorage<{ billNoList: string[] }>('customs');
@@ -44,15 +51,16 @@ export function Customs() {
   }, [data]);
 
   return (
-    <GridForm
+    <Form
       onSubmit={e => {
         e.preventDefault();
         SUBMIT(values.billNo);
       }}>
       <CustomsHeader />
       <Spacing size="2rem" />
-      <MonoSpaceInput
+      <Input
         ref={refs?.billNo as Ref<HTMLInputElement>}
+        monospace={true}
         type="text"
         name="billNo"
         placeholder="Tracking No."
@@ -65,10 +73,10 @@ export function Customs() {
 
       {/** END OF FORM CONTENT */}
 
-      <Label>최근 조회</Label>
-      <BillNo>
+      <CustomsLabel>최근 조회</CustomsLabel>
+      <CustomsBillno>
         {viewedBillNoList.map(n => (
-          <ViewedBillNo
+          <CustomsViewedBillNoList
             key={n}
             type="button"
             onClick={() => {
@@ -76,50 +84,50 @@ export function Customs() {
               SUBMIT(n);
             }}>
             {n}
-          </ViewedBillNo>
+          </CustomsViewedBillNoList>
         ))}
-      </BillNo>
+      </CustomsBillno>
 
       <Spacing size="3rem" />
-      <CargoTitle>{!isError(data?.tCnt) ? cargoStatus?.prnm : '조회 결과가 없어요'}</CargoTitle>
+      <CustomsCargoTitle>{!isError(data?.tCnt) ? cargoStatus?.prnm : '조회 결과가 없어요'}</CustomsCargoTitle>
 
       {!isError(data?.tCnt) && (
         <>
           <Spacing size="1rem" />
-          <Label>송장번호</Label>
-          <BillNo>{!isError(data?.tCnt) ? viewedBillNo : ''}</BillNo>
+          <CustomsLabel>송장번호</CustomsLabel>
+          <CustomsBillno>{!isError(data?.tCnt) ? viewedBillNo : ''}</CustomsBillno>
           {cargoStatus?.prgsStts === '반출완료' && (
-            <Track
+            <CustomsTrack
               href={`https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=${viewedBillNo}`}
               target="_blank"
               rel="noopener noreferrer">
               국내배송조회
-            </Track>
+            </CustomsTrack>
           )}
 
           <Spacing size="1rem" />
-          <Label>통관상태</Label>
-          <Status
-            css={{
+          <CustomsLabel>통관상태</CustomsLabel>
+          <CustomsStatus
+            style={{
               color: cargoStatus?.csclPrgsStts === '수입신고수리' ? COLORS.CAUTION : 'inherit',
             }}>
             {ParseCustomsUi(cargoStatus?.csclPrgsStts)}
-          </Status>
+          </CustomsStatus>
 
           <Spacing size="1rem" />
-          <Label>화물상태</Label>
-          <Status
-            css={{
+          <CustomsLabel>화물상태</CustomsLabel>
+          <CustomsStatus
+            style={{
               color: cargoStatus?.prgsStts === '반출완료' ? COLORS.OK : 'inherit',
             }}>
             {ParseCustomsUi(cargoStatus?.prgsStts)}
-          </Status>
+          </CustomsStatus>
 
           <Spacing size="1rem" />
-          <Label>처리시간</Label>
-          <Status>{parseCustomsDate(cargoStatus?.prcsDttm || '')}</Status>
+          <CustomsLabel>처리시간</CustomsLabel>
+          <CustomsStatus>{parseCustomsDate(cargoStatus?.prcsDttm || '')}</CustomsStatus>
         </>
       )}
-    </GridForm>
+    </Form>
   );
 }

@@ -1,8 +1,8 @@
-import { styled } from '~/stitches.config';
+import { FormHTMLAttributes } from 'react';
+import { FORM_BASE } from './form.css';
 
-export const GridForm = styled('form', {
-  position: 'relative',
-  width: '100%',
-  height: '100%',
-  minHeight: '100dvh',
-});
+type FormProps = FormHTMLAttributes<HTMLFormElement>;
+
+export function Form({ ...props }: FormProps) {
+  return <form className={FORM_BASE} {...props} />;
+}

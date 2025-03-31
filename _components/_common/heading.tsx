@@ -1,10 +1,9 @@
-import { styled } from '~/stitches.config';
-import { COLORS } from './_colors.css';
+import { HTMLAttributes } from 'react';
+import { RecipeVariants } from '@vanilla-extract/recipes';
+import { headingRecipe } from './heading.css';
 
-export const Heading = styled('h2', {
-  lineHeight: '1.25',
-  color: COLORS.TEXT,
-  fontSize: '1.75rem',
-  fontWeight: '600',
-  marginBottom: '1.5rem',
-});
+type HeadingProps = HTMLAttributes<HTMLHeadingElement> & RecipeVariants<typeof headingRecipe>;
+
+export function Heading({ size = 'L', ...props }: HeadingProps) {
+  return <h2 className={headingRecipe({ size })} {...props} />;
+}

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { COLORS } from '~/_components/_common/_colors.css';
+import { COLORS } from '~/_components/_common/_colors';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {

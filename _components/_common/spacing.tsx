@@ -1,4 +1,3 @@
-import { styled } from '~/stitches.config';
 import { memo } from 'react';
 
 export interface SpacingProps {
@@ -7,10 +6,12 @@ export interface SpacingProps {
 }
 
 export const Spacing = memo(({ size, dir = 'v' }: SpacingProps) => {
-  const Comp = styled('div', {
-    height: dir === 'v' ? size : 'auto',
-    width: dir === 'h' ? size : 0,
-  });
-
-  return <Comp />;
+  return (
+    <div
+      style={{
+        height: dir === 'v' ? size : 'auto',
+        width: dir === 'h' ? size : 0,
+      }}
+    />
+  );
 });
